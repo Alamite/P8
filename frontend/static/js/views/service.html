@@ -1,0 +1,388 @@
+<html>
+<title>TRIPPER-Service</title>
+<link rel='stylesheet' href="style.css">
+<body onload="fillbox();constructTable('#table')" style="background-color:black;">
+	<div class="navbar">
+		<h1 class="logo">Roadmaster</h1>
+		<ul class="nav">
+			<li><a href="index.html" class="hoverlink">Home</a></li>
+			<li><a href="rides.html" class="hoverlink">Rides</a></li>
+			<li><a href="service.html" class="hoverlink">Service</a></li>
+			<li><a href="about.html" class="hoverlink">About Us</a></li>
+			<li><a href="contact.html" class="hoverlink">Contact Us</a></li>
+			<li><a href="lab3.xml" class="hoverlink">XML</a></li>
+		</ul>
+	</div>
+    <div>
+	    <img src="service.jpg" style="right: 0; bottom: 0;width: 100%;margin-top: -250px;height:1030;">
+
+        <div style ="position: absolute;
+		text-align: left;
+		bottom: -0;
+		background: rgba(0, 0, 0, 0.5);
+		color: #f1f1f1;
+		width: 98.65%;
+		padding-left: 20px;">
+	
+	<h1>Book a <span style="color: yellow;">Service</span></h1>
+	<p>Find your nearest service center<a href="#map"><button class= 'btn' onclick="getLocation()">Detect my location</button></a>
+	
+	<div id="loc"></div>
+	</div>
+</div>
+<div class='content' style="padding-top:20px; width:100%; height: 100px;">
+	<div style="color: white; float: left; padding-top: 270px; padding-left: 45px;">
+		<h1>Service booking</h1>
+		Make an appointment for Roadmaster service from the safety and comfort of your home.
+	</div>
+	<div>
+	<form name="serviceReq">
+		<div class="elem-group">
+		  <label for="name">Your Name</label>
+		  <input type="text" id="name" name="visitor_name" onchange="func1()" placeholder="John Doe" onkeypress="return isalphaKey(event)" required>
+		  <span id = "name_error" style = "color:red"></span>
+		</div>
+		<div class="elem-group">
+		  <label for="email">Your E-mail</label>
+		  <input type="email" id="email" name="visitor_email" onchange="func1()" placeholder="john.doe@email.com" required>
+		  <span id = "mail_error" style = "color:red"></span>
+		</div>
+		<div class="elem-group">
+		  <label for="phone">Your Phone</label>
+		  <input type="tel" id="phone" name="visitor_phone" onchange="func1()" placeholder="498-348-3872" onkeypress="return isNumberKey(event)" required>
+		  <span id = "phone_error" style = "color:red"></span>
+		</div>
+		<div class="elem-group">
+		  <label for="room-selection">Select State</label>
+		  <select id="state" onchange="func1()" name="room_preference" required>
+			  <option value="">State</option>
+			  <option value="KA">Karnataka</option>
+			  <option value="KL">Kerala</option>
+			  <option value="TN">Tamil Nadu</option>
+		  </select>
+		  <span id = "state_error" style = "color:red"></span>
+		</div>
+		<div class="elem-group">
+			<label for="checkout-date">Date</label>
+			<input id = "date" onchange="func1()" type="date">
+			<span id = "date_error" style = "color:red"></span>
+		  </div>
+		<div class="elem-group">
+		  <label for="message">Explain your issue with the bike</label>
+		  <textarea rows="5" cols="40" placeholder="Tell us anything that might be important."></textarea>
+		</div>
+		<div class="elem-group">
+			<label for="spckey">Your member key</label>
+			<input type="password" id="spckey" name="visitor_email" placeholder="special key" required>
+			<br><br>
+		  <button class="btn" onclick="validate()" type="submit">Submit</button>
+		  </div>
+	  </form>
+	</div>
+	<div id="map" class="map"></div>
+	<br>
+	<div onload="constructTable">
+				<p id = "GFG_UP" style =
+				"font-size: 15px; font-weight: bold;color: #f1f1f1;">
+			</p>
+			<br>
+			<table align = "center"
+					id="table" border="1">
+			</table>
+	</div>
+</div>
+</center>
+
+<script>
+	function alert()
+	{
+		alert("alert");
+	}
+	var lat = 10.5276;
+	var lon = 76.2144;
+	var x = document.getElementById("loc");
+	function getLocation() { 
+	  if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(showPosition);
+	  } else {
+		x.innerHTML = "Geolocation is not supported by this browser.";
+	  }
+	}
+	
+	function showPosition(position) {
+
+	  x.innerHTML = "Latitude: " + position.coords.latitude +
+	  "<br>Longitude: " + position.coords.longitude;
+	  lat = position.coords.latitude;
+	  lon = position.coords.longitude;
+	  initMap();
+	}
+
+	function validate() {
+
+	//checking for null in name
+	testEle = document.getElementById("name").value;
+	testEle2 = document.getElementById("name");
+	if (testEle == "") {
+		testEle2.style.border = "red solid 3px";
+		//alert("Please fill name");
+		document.getElementById("name_error").textContent="please fill this field";
+		return false;
+	}
+	testEle2.style.border = "green solid 3px";
+	document.getElementById("name_error").textContent="";
+
+	//validating email
+	var testEle = document.getElementById("email").value;
+  	var testEle2 = document.getElementById("email");
+	var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  	if (re.test(testEle)!= true) {
+		testEle2.style.border = "red solid 3px";
+		alert("email format invalid.");
+		return false;
+  	}
+	var testEle = document.getElementById("email").value;
+  	var testEle2 = document.getElementById("email");
+	var re = /@roadmaster.com$/;
+  	if (re.test(testEle) != true) {
+		testEle2.style.border = "red solid 3px";
+		alert("Please enter your roadmaster email.");
+		return false;
+  	}
+	testEle2.style.border = "green solid 3px";
+
+
+	//validating phone
+	testEle = document.getElementById("phone").value;
+	testEle2 = document.getElementById("phone");
+    var re = /^[6-9][0-9]\d{8}$/;
+    if (re.test(testEle)!= true) {
+		testEle2.style.border = "red solid 3px";
+		alert("phone number invalid");
+        return false;
+	}
+	testEle2.style.border = "green solid 3px";
+
+
+	//checking for null in state
+	testEle = document.getElementById("state").value;
+	testEle2 = document.getElementById("state");
+	if (testEle == "") {
+		testEle2.style.border = "red solid 3px";
+		alert("Please fill state");
+		return false;
+	}
+	else
+	testEle2.style.border = "green solid 3px";
+
+
+	//checking for null in date
+	testEle = document.getElementById("date").value;
+	testEle2 = document.getElementById("date");
+	if (testEle == "") {
+		testEle2.style.border = "red solid 3px";
+		alert("Please fill date");
+		return false;
+	}
+	else
+	testEle2.style.border = "green solid 3px";
+  	
+
+	//validating special key
+	const pswformat = "special key invalid\n\nminimum of 1 lower case letter [a-z]\nminimum of 1 upper case letter [A-Z]\nminimum of 1 numeric character [0-9]\n1 special character.";
+	testEle = document.getElementById("spckey").value;
+	testEle2 = document.getElementById("spckey");
+    var re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})$/;
+    /*if (re.test(testEle)!= true) {
+		testEle2.style.border = "red solid 3px";
+		alert(pswformat);
+        return false;
+	}
+	testEle2.style.border = "green solid 3px";*/
+
+	cookievalue = escape(document.serviceReq.visitor_name.value);
+	document.cookie = "name=" + cookievalue;
+	alert("Thank you "+cookievalue+". You're request has been submitted");
+	
+
+}
+
+
+//locking alphabets for phone
+function isNumberKey(evt)
+      {
+         var charCode = (evt.which) ? evt.which : event.keyCode;
+		 const re = /^[A-Za-z]+$/;
+
+		 if (re.test(evt.key))
+            return false;
+
+         return true;
+      }
+	
+//locking number for name
+function isalphaKey(evt)
+      {
+         var charCode = (evt.which) ? evt.which : event.keyCode;
+		 const re = /^[A-Za-z]+$/;
+
+		 if (re.test(evt.key)!=true)
+            return false;
+
+         return true;
+      }
+
+	  //cookies
+	  function setCookie(cname, cvalue, exdays) 
+        {
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays*24*60*60*1000));
+            let expires = "expires="+ d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+        function func1(x)
+        {
+            
+            var date=document.getElementById("date").value;
+            var name=document.getElementById("name").value;
+            var email=document.getElementById("email").value;
+			var phone=document.getElementById("phone").value;
+			var state=document.getElementById("state").value;
+
+            setCookie("codate",date,2);
+            setCookie("coname",name,2);
+            setCookie("coemail",email,2);
+			setCookie("costate",state,2);
+			setCookie("cophone",phone,2);
+        }
+
+		function getCookie(cname) 
+        {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for(let i = 0; i <ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        function fillbox()
+        {
+            document.getElementById("name").value=getCookie("coname");
+            document.getElementById("email").value=getCookie("coemail");
+            document.getElementById("phone").value=getCookie("cophone");
+			document.getElementById("state").value=getCookie("costate");
+			document.getElementById("date").value=getCookie("codate");
+
+        }
+
+        function remove()
+        {
+            alert("Submitted Successfully");
+            document.cookie = "cophone"+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.cookie = "coname"+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.cookie = "codate"+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+			document.cookie = "coemail"+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+			document.cookie = "costate"+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            location.reload();
+        }
+
+
+	  //Google map api
+	  function initMap(){
+			var options = {
+				zoom:14,
+				center:{lat:lat,lng:lon}
+			}
+			var map = new google.maps.Map(document.getElementById('map'),options);
+			var marker1 = new google.maps.Marker({position:{lat:12.944420,lng:77.603431},map:map});     
+
+			var infowindow1 = new google.maps.InfoWindow({content:'Art of motorcycles'});
+
+			marker1.addListener('click', function(){
+				infowindow1.open(map, marker1);
+			});
+	}
+
+
+	//JSON LAB 7
+	var el_up = document.getElementById("GFG_UP");
+         
+        var list =[
+            {
+            "States":"Andaman and Nicobar",
+            "2010-2011": 0,
+            "2009-10": 7,
+            "2008-09": 1
+            },
+            {
+            "States":"Andhra Pradesh",
+            "2010-2011": 1119,
+            "2009-10": 1837,
+            "2008-09": 2442
+            }
+            ]
+         
+        el_up.innerHTML = "Click on the button to create "
+                +   "the table from the JSON data.<br><br>"
+                + JSON.stringify(list[0]) + "<br>"
+                + JSON.stringify(list[1]) + "<br>"
+                + JSON.stringify(list[2]);  
+             
+        function constructTable(selector) {
+             
+            // Getting the all column names
+            var cols = Headers(list, selector); 
+  
+            // Traversing the JSON data
+            for (var i = 0; i < list.length; i++) {
+                var row = $('<tr/>');  
+                for (var colIndex = 0; colIndex < cols.length; colIndex++)
+                {
+                    var val = list[i][cols[colIndex]];
+                     
+                    // If there is any key, which is matching
+                    // with the column name
+                    if (val == null) val = ""; 
+                        row.append($('<td/>').html(val));
+                }
+                 
+                // Adding each row to the table
+                $(selector).append(row);
+            }
+        }
+         
+        function Headers(list, selector) {
+            var columns = [];
+            var header = $('<tr/>');
+             
+            for (var i = 0; i < list.length; i++) {
+                var row = list[i];
+                 
+                for (var k in row) {
+                    if ($.inArray(k, columns) == -1) {
+                        columns.push(k);
+                         
+                        // Creating the header
+                        header.append($('<th/>').html(k));
+                    }
+                }
+            }
+             
+            // Appending the header to the table
+            $(selector).append(header);
+                return columns;
+        }      
+	</script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOVCinBd_w5--BzHPs-N4qL4I476L_GDM&callback=initMap"
+type="text/javascript"></script>
+</body>
+</html>

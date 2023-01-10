@@ -1,0 +1,127 @@
+<html>
+<title>TRIPPER-ContactUs</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+<link rel='stylesheet' href="style.css">
+<style>
+	table th
+			{
+			text-align: center;
+    		border-radius: 5%;
+            background-color: black;
+            font-size: 20px;
+			}
+	table td
+            {
+            text-align: center;
+            border: 1px solid #FFE100;
+    		border-radius: 5%;
+            background-color: black;
+            font-size: 20px;
+			transition: 0.8s; 
+            }
+            table
+            {
+			border-spacing: 10px;
+            text-align: center;
+            }
+            table td:hover
+            {
+                color: black;
+    			background: #FFE100;
+            }
+</style>
+<body style="background-color:black;">
+	<div class="navbar">
+		<h1 class="logo">Roadmaster</h1>
+			<ul class="nav">
+				<li><a href="index.html" class="hoverlink">Home</a></li>
+				<li><a href="rides.html" class="hoverlink">Rides</a></li>
+				<li><a href="service.html" class="hoverlink">Service</a></li>
+				<li><a href="about.html" class="hoverlink">About Us</a></li>
+				<li><a href="contact.html" class="hoverlink">Contact Us</a></li>
+				<li><a href="lab3.xml" class="hoverlink">XML</a></li>
+			</ul>
+        </div>
+		<div class='content' style="padding-top:20px; width:100%; height: 100px;">
+			<div style="color: white; float: left; padding-top: 270px; padding-left: 120px; padding-right: 100px;">
+				<h1>Contact Us</h1>
+				Reach us on our toll free numbers in your state.
+			</div>
+		<div ng-app="myApp" ng-controller="myController" align="center">
+
+			<!--THE SEARCH BOX-->
+			<div style="padding-top: 100px;">
+			<input type="Search" ng-model="search" placeholder="Search for state" />
+			<img src=""><br><br>
+			
+			</div>
+			<table style="color: white;">
+				<tr>
+					<th>State</th>
+						<th>Number</th>
+				</tr>
+	
+				<!--TABLE ROWS WITH A FILTER-->
+				<tr ng-repeat="numbers in contactnumbers | filter : search">
+	
+					<td>{{numbers.States}}</td>
+						<td>{{numbers.number}}</td>
+				</tr>
+			</table>
+			
+		</div>
+		</div>
+<script>
+    angular.module("myApp", [])
+        .controller('myController', ['$scope', function ($scope) {
+
+            // JSON ARRAY OBJECT.
+            $scope.contactnumbers =
+            [
+        {
+        "States":"Kerala",
+        "number": 123456789
+        },
+        {
+        "States":"Karnataka",
+        "number": 987654321
+        },
+		{
+        "States":"Tamil Nadu",
+        "number": 987654321
+        },
+		{
+        "States":"Maharashtra",
+        "number": 9876234521
+        },
+		{
+        "States":"Andhra Pradesh",
+        "number": 987654321
+        },
+		{
+        "States":"Goa",
+        "number": 987654321
+        },
+		{
+        "States":"Telegana",
+        "number": 987654321
+        },
+		{
+        "States":"Punjab",
+        "number": 987654321
+        },
+		{
+        "States":"Delhi",
+        "number": 987654321
+        },
+		{
+        "States":"Gujrat",
+        "number": 987654321
+        },
+        ]
+
+        } ]);
+    </script>
+</body>
+</center>
+</html>

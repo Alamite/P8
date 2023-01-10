@@ -1,0 +1,224 @@
+@import "https://use.fontawesome.com/releases/v5.5.0/css/all.css";
+html {
+    scroll-behavior: smooth;
+}
+body{
+    margin: 0;
+    padding: 0;
+    font-family:Poppins;
+    background-color: black;
+}
+.navbar{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: black;
+    width: 100%;
+    height: 70px;
+    z-index: 1;
+}
+.nav{
+    display: flex;
+    justify-content: right;
+    list-style: none;
+    margin-right: 5%;
+    padding-left: 20%;
+}
+.logo {
+    font-family: "Motopica-Demo";
+    src:url("MotopicaDemo-m6j9.ttf");
+    color: white;
+    font-size: 40;
+    margin-left: 10%;
+}
+a{
+    margin: 15px;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: inline-block;
+}
+.login-box{
+    width: 280px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: white;
+  }
+  .login-box h1{
+    float: left;
+    font-size: 40px;
+    border-bottom: 6px solid #FFE100;
+    margin-bottom: 50px;
+    padding: 13px 0;
+  }
+  .textbox{
+    width: 100%;
+    overflow: hidden;
+    font-size: 20px;
+    padding: 8px 0;
+    margin: 8px 0;
+    border-bottom: 1px solid #FFE100;
+  }
+  .textbox i{
+    width: 26px;
+    float: left;
+    text-align: center;
+  }
+  .textbox input{
+    border: none;
+    outline: none;
+    background: none;
+    color: white;
+    font-size: 18px;
+    width: 80%;
+    float: left;
+    margin: 0 10px;
+  }
+  .eye{
+    position: absolute;
+  }
+  #hide2{
+    display: none;
+  }
+  #hide4{
+    display: none;
+  }
+  #map{
+    height: 400px;
+    width: 700px;
+  }
+.hoverlink::after{
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #FFE100;
+    transition: width .3s;
+}
+.hoverlink:hover::after{
+    width: 100%;
+    transition: width .3s;
+}
+.btn{
+    border: 1px solid #FFE100;
+    border-radius: 5%;
+    color: white;
+    background: black;
+    padding: 10px 20px;
+    font-size: 15px;
+    font-family: "montserrat";
+    cursor: pointer;
+    margin: 10px;
+    transition: 0.8s;
+    position: relative;
+    overflow: hidden;
+  }
+.btn:hover{
+    color: black;
+    background: #FFE100;
+}
+.content{
+    justify-content: center;
+    margin-top: 0;
+}      
+
+label{
+  display:inline-block;
+  width:200px;
+  margin-right:30px;
+  text-align: left;
+  }
+  
+fieldset{
+  align-content: left;
+  border:none;
+  width:500px;
+  margin:0px auto;
+  }
+
+
+  div.elem-group {
+    padding-left: 50%;
+    padding-right: 60px;
+    margin: 20px;
+  }
+  
+  label {
+    color: white;
+    padding-bottom: 10px;
+    font-size: 1.25em;
+  }
+  
+  input, select, textarea {
+    border-radius: 2px;
+    border: 2px solid #777;
+    box-sizing: border-box;
+    font-size: 1.25em;
+    font-family: 'Nanum Gothic';
+    width: 100%;
+    padding: 10px;
+  }
+  
+  div.elem-group.inlined input {
+    width: 95%;
+    display: inline-block;
+  }
+  
+  textarea {
+    height: 250px;
+  }
+  
+  hr {
+    border: 1px dotted #ccc;
+  }
+  
+  button {
+    height: 50px;
+    background: orange;
+    border: none;
+    color: white;
+    font-size: 1.25em;
+    font-family: 'Nanum Gothic';
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    border: 2px solid black;
+  }
+
+  .map{
+    margin-left: 30%;
+    width: 100%;
+    height: 300px;
+  }
+
+  input[type=search]
+{
+    height: 30px;
+    border-radius: 15px;
+    font-size: 20px;  
+    width: 400px;
+}
+
+.card {
+  /* Add shadows to create the "card" effect */
+ 
+  transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 5px 12px 0 yellow;
+}
+
+/* Add some padding inside the card container */
+.container {
+  background-color: white;
+  padding: 2px 1px;
+}
